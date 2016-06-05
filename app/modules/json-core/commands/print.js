@@ -2,7 +2,7 @@ const
   Command = require("../../../components/Command"),
   chalk = require("chalk");
 
-class LoadCommand extends Command {
+class PrintCommand extends Command {
   hook(vorpal, options={}) {
     vorpal
       .command("print", "Prints out the currently loaded context")
@@ -22,4 +22,4 @@ class LoadCommand extends Command {
   }
 }
 
-module.exports = LoadCommand;
+module.exports = PrintCommand;
