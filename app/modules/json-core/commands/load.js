@@ -30,7 +30,10 @@ class LoadCommand extends Command {
             throw e;
           }
         }
-        vorpal.dump.context = obj;
+        vorpal.dump.set({
+          context: obj,
+          path: null
+        });
         callback();
       });
   }

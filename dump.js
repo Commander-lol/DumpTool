@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 const
-    vorpal = require("vorpal"),
-    Module_Fs = require("./app/modules/fs"),
-    Loader = require("./app/components/Loader");
+  vorpal = require("vorpal"),
+  Module_Fs = require("./app/modules/fs"),
+  Loader = require("./app/components/Loader");
 
 var
   prelude = vorpal(),
