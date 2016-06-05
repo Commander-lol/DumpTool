@@ -1,21 +1,22 @@
 #!/usr/bin/env node
 
 const
-  vorpal = require("vorpal"),
-  Mod_Fs = require("./app/modules/fs"),
-  Loader = require("./app/components/Loader");
+    vorpal = require("vorpal"),
+    Module_Fs = require("./app/modules/fs"),
+    Loader = require("./app/components/Loader");
 
 var
   prelude = vorpal(),
-  states = {},
+  loader = new Loader(__dirname + "/app");
 
-  modfs = new Mod_Fs();
+  modfs = new Module_Fs();
 
 modfs.prefix("fs");
 
-Loader.load(modfs);
+loader.load(modfs);
+loader.load("modules/json-core");
 
-prelude.use(Loader.hook);
+prelude.use(loader.hook);
 
 prelude
   .delimiter("dt~$")
