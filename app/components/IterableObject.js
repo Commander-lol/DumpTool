@@ -3,7 +3,7 @@ class IterableObject {
     this.set(src);
     this[Symbol.iterator] = function* () {
       for (let key of Object.keys(this)) {
-        yield [key, this[key]];
+        yield [this[key], key];
       }
     }
   }
