@@ -4,8 +4,7 @@ const
   utils = require("../../../utils");
 
   _ = require("lodash"),
-  Table = require("cli-table"),
-  chalk = require("chalk");
+  Table = require("cli-table");
 
 class CompareCommand extends Command {
   hook(vorpal, options={}) {
@@ -19,23 +18,6 @@ class CompareCommand extends Command {
         string: ['i', 'f']
       })
       .validate((args) => {
-        // if (args.options.i != null) {
-        //   let i = args.options.i;
-        //   if (i !== "all") {
-        //     let err = "";
-        //     i = i.split(",").map(inst => inst.trim());
-        //     for (let val of i) {
-        //       if (!val in Object.values(vorpal.dump.instances)) {
-        //         err += `No such instance ${val}\n`;
-        //       }
-        //     }
-        //     if (err === "") {
-        //       return err;
-        //     } else {
-        //       return true;
-        //     }
-        //   }
-        // }
         return true;
       })
       .action ((args, callback) => {
@@ -52,7 +34,7 @@ class CompareCommand extends Command {
           handlingArray = true,
           head = [""].concat(data.map(i => i.name)),
           table = new Table({head}),
-          relevant = data.map(d => utils.json.getProperty(d.data, args.path)),
+          relevant = data.map(d => _.get(d.data, args.path)),
           rows = [];
 
         if (args.options.c) {

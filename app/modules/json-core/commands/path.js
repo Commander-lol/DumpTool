@@ -2,16 +2,15 @@ const
   Command = require("../../../components/Command"),
   utils = require("../../../utils"),
 
-  chalk = require("chalk");
+  _ = require("lodash");
 
 class PathCommand extends Command {
   hook(vorpal, options={}) {
     vorpal
       .command("path [path]", "Gets or sets the path within the current context")
       .validate((args) => {
-        console.log(utils);
         if(args.path) {
-          if (utils.json.hasProperty(vorpal.dump.context, args.path)) {
+          if (_.has(vorpal.dump.context, args.path)) {
             return true;
           } else {
             return "No such path in context " + args.path;
