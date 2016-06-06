@@ -3,20 +3,24 @@ module.exports = {
     let
       [first, ...parts] = path.split("."),
       _innerGet = (o, p, r) => {
-        console.log("Inner", o, p, r);
-        if (p in o) {
-          if (typeof p[o] === "object") {
-            let [first, ...parts] = r;
-            return _innerGet(p[o], first, parts);
+        if (o[p] != null) {
+          if (typeof o[p] === "object") {
+            if(r.length > 0) {
+              let [first, ...parts] = r;
+              return _innerGet(o[p], first, parts);
+            } else {
+              return o[p];
+            }
           } else {
             if (r.length > 0) {
               throw new TypeError("No such property " + path);
             } else {
-              return p[o];
+
+              return o[p];
             }
           }
         } else {
-          throw new TypeError("No such property " + path);
+          throw new TypeError("Nein such property " + path);
         }
       };
 
@@ -27,7 +31,6 @@ module.exports = {
       this.getProperty(object, path);
     } catch (e) {
       if (e.message === "No such property " + path) {
-        console.log("No Such prop");
         return false
       } else {
         throw e;
@@ -36,6 +39,6 @@ module.exports = {
     return true;
   },
   createPath: function(...parts) {
-    
+
   }
 };
