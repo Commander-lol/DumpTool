@@ -13,6 +13,10 @@ class IterableObject {
       this[key] = obj[key];
     }
   }
+
+  empty() {
+    return Object.keys(this).length === 0;
+  }
 }
 
 module.exports = IterableObject;
