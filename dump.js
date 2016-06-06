@@ -15,6 +15,7 @@ modfs.prefix("fs");
 
 loader.load(modfs);
 loader.load("modules/json-core");
+loader.load("modules/json-compare");
 
 prelude.use(loader.hook);
 
